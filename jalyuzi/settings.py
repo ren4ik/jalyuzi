@@ -90,7 +90,7 @@ MEDIA_ROOT = '/home/rdev/PycharmProjects/jalyuzi/media/'
 
 STATIC_URL = '/static/'
 if DEBUG:
-    STATICFILES_DIRS = '/home/rdev/PycharmProjects/jalyuzi/static/'
+    STATICFILES_DIRS = [BASE_DIR / 'static']
 else:
     STATIC_ROOT = ''
 
