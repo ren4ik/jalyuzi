@@ -10,7 +10,6 @@ if socket.gethostname() == 'your.domain.com':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
