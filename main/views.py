@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 class HomePage(View):
 
     def get(self, request):
-        return render(request, 'index.html')
+        return render(request, 'home.html')
 
 
 class AboutPage(TemplateView):
