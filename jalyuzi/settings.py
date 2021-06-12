@@ -21,10 +21,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # extra app
+    'ckeditor'
 ]
 
 MY_APP = [
-
+    'catalog',
+    'news',
+    'main',
+    'sales'
 ]
 
 INSTALLED_APPS += MY_APP
@@ -106,3 +111,15 @@ except ImportError:
 # python manage.py collectstatic
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+            'toolbar': 'Basic',
+        },
+    'default': {
+        'forcePasteAsPlainText': True
+    },
+}
