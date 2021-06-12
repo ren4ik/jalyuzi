@@ -42,6 +42,7 @@ pip-delete-this-directory.txt
 *.sass
 *.scss
 *.js
+*.html
 
 static/js/
 static/images/
@@ -49,6 +50,7 @@ static/css/
 static/sass/
 static/
 media/
+templates/temp/
 
 templates/
 
