@@ -38,6 +38,11 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+static/
+media/
+
+templates/
+
 */migrations/
 
 # Unit test / coverage reports
