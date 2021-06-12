@@ -4,7 +4,9 @@ from django.views.generic import TemplateView
 
 
 class HomePage(View):
-    pass
+
+    def get(self, request):
+        return render(request, 'index.html')
 
 
 class AboutPage(TemplateView):
