@@ -38,6 +38,15 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+*.css
+*.sass
+*.scss
+*.js
+
+static/js/
+static/images/
+static/css/
+static/sass/
 static/
 media/
 
