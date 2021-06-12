@@ -4,9 +4,11 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
+from main.views import HomePage
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('users.urls')),
+    path('', HomePage.as_view(), name="home"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
