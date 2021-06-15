@@ -7,7 +7,7 @@ from pytils.translit import slugify
 class ProductCategory(models.Model):
     name = models.CharField("Category name", max_length=100)
     is_active = models.BooleanField("Active?", default=False)
-    slug = models.SlugField("Slug url", unique=True)
+    slug = models.SlugField("Slug url", unique=True, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -42,7 +42,7 @@ class Product(models.Model):
     is_active = models.BooleanField("Active?", default=False)
     is_new = models.BooleanField("New?", default=False)
     is_popular = models.BooleanField("Popular?", default=False)
-    slug = models.SlugField("Slug url", unique=True)
+    slug = models.SlugField("Slug url", unique=True, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
