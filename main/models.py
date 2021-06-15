@@ -19,3 +19,6 @@ class Contact(models.Model):
 
     def get_absolute_url(self):
         return reverse('contact-detail', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        return self.name

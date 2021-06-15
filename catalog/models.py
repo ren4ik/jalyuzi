@@ -50,7 +50,9 @@ class Product(models.Model):
 
     def admin_image(self):
 
-        if self.img:
+        if self.img == 'Not image':
+            return 'Not Image Found'
+        elif self.img:
             from django.utils.safestring import mark_safe
             return mark_safe(
                 f'<a href="{self.img.url}" target="_blank"><img src="{self.img.url}" width="100" /></a>'
@@ -67,3 +69,6 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product-detail', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        return self.title

@@ -7,7 +7,7 @@ from pytils.translit import slugify
 class NewsCategory(models.Model):
     name = models.CharField("Category name", max_length=100)
     is_active = models.BooleanField("Active?", default=False)
-    slug = models.SlugField("Slug url", unique=True)
+    slug = models.SlugField("Slug url", unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -35,7 +35,7 @@ class Article(models.Model):
     text = RichTextField("Content")
     pub_date = models.DateField("Publication Date", auto_now_add=True)
     is_active = models.BooleanField("Active?", default=False)
-    slug = models.SlugField("Slug url", unique=True)
+    slug = models.SlugField("Slug url", unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -43,7 +43,9 @@ class Article(models.Model):
 
     def admin_image(self):
 
-        if self.img:
+        if self.img == 'Not image':
+            return 'Not Image Found'
+        elif self.img:
             from django.utils.safestring import mark_safe
             return mark_safe(
                 f'<a href="{self.img.url}" target="_blank"><img src="{self.img.url}" width="100" /></a>'
