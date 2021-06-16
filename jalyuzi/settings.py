@@ -22,7 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # extra app
-    'ckeditor'
+    'ckeditor',
+    'sorl.thumbnail'
 ]
 
 MY_APP = [
