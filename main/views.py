@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
+import random
 
 from catalog.models import Product
 
@@ -9,7 +10,7 @@ class HomePage(View):
 
     def get(self, request):
         products = Product.objects.filter(is_active=True)
-        product_list = products[:4]
+        product_list = products[:5]
         new_product = products.filter(is_new=True).first()
         return render(request, 'home.html', {
             'product_list': product_list,
