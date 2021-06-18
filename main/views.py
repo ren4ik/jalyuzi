@@ -6,7 +6,8 @@ from django.http import HttpResponse
 import telebot
 
 from catalog.models import Product
-from main.models import Contact
+from main.models import Contact, Slider
+from news.models import Article
 
 bot = telebot.TeleBot("1396276770:AAF8k9yxEt8yBnfYuBMYR72EQuFGmf_Wvjs", parse_mode='HTML')
 
@@ -14,12 +15,23 @@ bot = telebot.TeleBot("1396276770:AAF8k9yxEt8yBnfYuBMYR72EQuFGmf_Wvjs", parse_mo
 class HomePage(View):
 
     def get(self, request):
+        slides = Slider.objects.filter(is_active=True)
         products = Product.objects.filter(is_active=True)
         product_list = products[:5]
         new_product = products.filter(is_new=True).first()
+        popular = products.filter(is_popular=True)
+        populars = popular[:3]
+        populars_2 = popular[:5]
+        popular_product = products.filter(is_popular=True).first()
+        articles = Article.objects.filter(is_active=True)[:5]
         return render(request, 'home.html', {
             'product_list': product_list,
-            'new_product': new_product
+            'new_product': new_product,
+            'populars': populars,
+            'populars_2': populars_2,
+            'popular_product': popular_product,
+            'articles': articles,
+            'slides': slides
         })
 
 
