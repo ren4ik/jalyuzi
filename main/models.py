@@ -4,10 +4,11 @@ from django.urls import reverse
 
 
 class Contact(models.Model):
-    name = models.CharField("Name", max_length=100)
-    text = models.TextField("Text")
+    name = models.CharField("Name", max_length=100, default="Client", blank=True)
+    phone = models.CharField("Phone", max_length=20, default="+998 99 999 99 99")
+    text = models.TextField("Text", blank=True, default="From main page")
     pub_date = models.DateField("Publication date", auto_now_add=True)
-    slug = models.SlugField("Slug url", unique=True)
+    slug = models.SlugField("Slug url", unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
