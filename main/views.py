@@ -1,15 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView
-import re
 from django.http import HttpResponse
 import telebot
 
 from catalog.models import Product
 from main.models import Contact, Slider, Command
 from news.models import Article
+from jalyuzi.local_settings import KEY_TELEGRAM
 
-bot = telebot.TeleBot("1396276770:AAF8k9yxEt8yBnfYuBMYR72EQuFGmf_Wvjs", parse_mode='HTML')
+bot = telebot.TeleBot(KEY_TELEGRAM, parse_mode='HTML')
 
 
 class HomePage(View):
@@ -41,7 +41,8 @@ class AboutPage(TemplateView):
         slides = Slider.objects.filter(is_active=True)
         commands = Command.objects.filter(is_active=True)
         return render(request, 'main/about.html', {
-            'slides': slides
+            'slides': slides,
+            'commands': commands
         })
 
 
