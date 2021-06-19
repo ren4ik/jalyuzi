@@ -1,6 +1,4 @@
 from django.db import models
-from pytils.translit import slugify
-from django.urls import reverse
 
 
 class Contact(models.Model):
@@ -43,3 +41,32 @@ class Slider(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Command(models.Model):
+    full_name = models.CharField("Full name", max_length=100)
+    img = models.ImageField("Photo", upload_to="slider")
+    position = models.CharField("Position", max_length=100)
+    is_active = models.BooleanField("Active?", default=False)
+
+    def admin_image(self):
+
+        if self.img == 'Not image':
+            return 'Not Image Found'
+        elif self.img:
+            from django.utils.safestring import mark_safe
+            return mark_safe(
+                f'<a href="{self.img.url}" target="_blank"><img src="{self.img.url}" width="100" /></a>'
+            )
+        else:
+            return 'Not Image Found'
+
+    admin_image.short_description = 'Photo'
+    admin_image.allow_tags = True
+
+    class Meta:
+        verbose_name = 'Command'
+        verbose_name_plural = 'Commands'
+
+    def __str__(self):
+        return self.full_name

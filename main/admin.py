@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from main.models import Contact, Slider
+from main.models import Contact, Slider, Command
 
 
 @admin.register(Slider)
@@ -25,4 +25,18 @@ class AdminContact(admin.ModelAdmin):
         'pub_date',
     ]
     list_per_page = 20
+
+
+@admin.register(Command)
+class AdminCommand(admin.ModelAdmin):
+    list_display = [
+        'full_name',
+        'position',
+        'admin_image',
+        'is_active',
+    ]
+    list_per_page = 20
+    list_editable = [
+        'is_active',
+    ]
 

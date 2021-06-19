@@ -6,7 +6,7 @@ from django.http import HttpResponse
 import telebot
 
 from catalog.models import Product
-from main.models import Contact, Slider
+from main.models import Contact, Slider, Command
 from news.models import Article
 
 bot = telebot.TeleBot("1396276770:AAF8k9yxEt8yBnfYuBMYR72EQuFGmf_Wvjs", parse_mode='HTML')
@@ -38,7 +38,11 @@ class HomePage(View):
 class AboutPage(TemplateView):
 
     def get(self, request):
-        return render(request, 'main/about.html')
+        slides = Slider.objects.filter(is_active=True)
+        commands = Command.objects.filter(is_active=True)
+        return render(request, 'main/about.html', {
+            'slides': slides
+        })
 
 
 class ContactPage(View):
