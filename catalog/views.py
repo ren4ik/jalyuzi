@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 
 from catalog.models import Product, ProductCategory
 
@@ -25,6 +26,14 @@ class CatListItem(ListView):
 class ProductDetail(DetailView):
     model = Product
     template_name = 'catalog/catalog_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetail, self).get_context_data(**kwargs)
+        category = self.model.objects.get(slug=self.kwargs['slug'])
+        context['categories'] = self.model.objects.filter(
+            Q(is_active=True) & Q(category=category.category)
+        )
+        return context
 
 
 class CategoryDetail(DetailView):
