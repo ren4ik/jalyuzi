@@ -8,7 +8,7 @@ from catalog.models import Product, ProductCategory
 class GoodsList(ListView):
     model = Product
     template_name = 'catalog/catalog_list.html'
-    queryset = model.objects.filter(is_active=True)
+    queryset = model.objects.filter(Q(is_active=True) & Q(category__is_active=True))
     paginate_by = 6
 
 
