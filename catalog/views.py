@@ -7,6 +7,7 @@ from catalog.models import Product, ProductCategory
 class GoodsList(ListView):
     model = Product
     template_name = 'catalog/catalog_list.html'
+    queryset = model.objects.filter(is_active=True)
 
 
 class CatListItem(ListView):
